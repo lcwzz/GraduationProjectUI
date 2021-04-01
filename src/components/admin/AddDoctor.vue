@@ -1,12 +1,12 @@
 <template>
-  <div>
-  主页
+<div>
+  添加医生
 </div>
 </template>
 
 <script>
 export default {
-name: "Home"
+  name: "AddDoctor"
 }
 </script>
 

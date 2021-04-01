@@ -1,14 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+<div>
+  查看考勤
+</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: "Records"
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>

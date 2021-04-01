@@ -1,14 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div>
+    今日考勤
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: "Record"
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>

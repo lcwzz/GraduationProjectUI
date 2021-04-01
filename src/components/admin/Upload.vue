@@ -1,14 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+<div>
+  上传
+</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: "Upload"
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>

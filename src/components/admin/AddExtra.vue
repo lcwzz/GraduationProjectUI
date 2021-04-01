@@ -1,14 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+<div>
+  添加奖惩
+</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: "AddExtra"
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>
