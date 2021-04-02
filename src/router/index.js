@@ -19,6 +19,7 @@ import AddExtra from "../components/admin/AddExtra";
 import AdminProject from "../components/admin/Project";
 import AdminProjects from "../components/admin/Projects";
 import Upload from "../components/admin/Upload";
+import Department from "../components/admin/Department";
 
 Vue.use(Router)
 
@@ -46,6 +47,7 @@ export default new Router({
         {path: 'project', component: AdminProject},
         {path: 'projects', component: AdminProjects},
         {path: 'upload', component: Upload},
+        {path: 'department', component: Department},
       ]},
   ]
 })

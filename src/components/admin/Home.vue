@@ -45,6 +45,10 @@
             <el-menu-item index="/admin/project">正在申请的项目</el-menu-item>
             <el-menu-item index="/admin/projects">通过审批的项目</el-menu-item>
           </el-submenu>
+          <el-menu-item index="/admin/department">
+            <i class="el-icon-s-home"></i>
+            <span slot="title">科室管理</span>
+          </el-menu-item>
           <el-menu-item index="/admin/upload">
             <i class="el-icon-upload"></i>
             <span slot="title">资料上传</span>
