@@ -7,7 +7,7 @@
     <el-table-column prop="sign" label="奖惩"></el-table-column>
     <el-table-column prop="money" label="金额"></el-table-column>
     <el-table-column prop="reason" label="原因"></el-table-column>
-    <el-table-column prop="admin" label="创建人"></el-table-column>
+    <el-table-column prop="name" label="创建人"></el-table-column>
   </el-table>
 </template>
 
@@ -16,15 +16,20 @@ export default {
   name: "UserExtra",
   data() {
     return {
-      tableData: [
-        {
-          sign: "奖励",
-          money: 100,
-          reason: "暂无",
-          admin: "张三"
-        }
-      ]
+      tableData: []
     }
+  },
+  created() {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    this.$http.get("http://localhost/doctor/findExtra?id=" + user.id).then(response => {
+      console.log(response.data);
+      let res = response.data;
+      if (!res.success) {
+        this.$message.error(res.message);
+      } else {
+        this.tableData = res.data;
+      }
+    });
   }
 }
 </script>

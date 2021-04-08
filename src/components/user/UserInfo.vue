@@ -71,6 +71,16 @@ export default {
       this.btnSubmitCtl = true;
       this.btnEditCtl = false;
       this.formCtl = true;
+      const _this = this;
+      this.$http.post("http://localhost/doctor/update", this.doctor).then(function (response) {
+        let res = response.data;
+        if (!res.success) {
+          _this.$message.error(res.message);
+        } else {
+          sessionStorage.setItem("user", JSON.stringify(_this.doctor));
+          location.reload();
+        }
+      });
     },
     edit() {
       this.formCtl = false;
