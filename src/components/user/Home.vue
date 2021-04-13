@@ -38,14 +38,10 @@
             <el-menu-item index="/user/record">今日考勤</el-menu-item>
             <el-menu-item index="/user/records">考勤查看</el-menu-item>
           </el-submenu>
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-document"></i>
-              <span>项目信息</span>
-            </template>
-            <el-menu-item index="/user/project">项目申请</el-menu-item>
-            <el-menu-item index="/user/projects">项目进度查看</el-menu-item>
-          </el-submenu>
+          <el-menu-item index="/user/projects">
+            <i class="el-icon-document"></i>
+            <span slot="title">项目信息</span>
+          </el-menu-item>
           <el-menu-item index="/user/download">
             <i class="el-icon-download"></i>
             <span slot="title">资料下载</span>

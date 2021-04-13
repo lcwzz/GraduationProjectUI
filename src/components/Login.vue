@@ -56,7 +56,7 @@ export default {
                 _this.$message.error(res.message);
               } else {
                 sessionStorage.setItem("user", JSON.stringify(res.data));
-                _this.$router.push("/user/userInfo");
+                _this.$router.push("/user/record");
               }
             });
           } else {

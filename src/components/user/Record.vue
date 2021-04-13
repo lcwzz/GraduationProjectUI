@@ -1,6 +1,7 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <span style="font-size: 30px; padding-left: 10px">欢迎访问医院职工管理系统</span>
+    <el-card class="box-card" style="margin-top: 20px">
       <div slot="header" class="clearfix">
         <span>考勤打卡</span>
       </div>
