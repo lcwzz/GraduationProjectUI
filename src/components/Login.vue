@@ -60,7 +60,16 @@ export default {
               }
             });
           } else {
-            this.$router.push("/admin/adminInfo");
+            this.$http.post("http://localhost/admin/login", this.form).then(response => {
+              console.log(response.data);
+              let res = response.data;
+              if (!res.success) {
+                this.$message.error(res.message);
+              } else {
+                sessionStorage.setItem("admin", JSON.stringify(res.data));
+                this.$router.push("/admin/welcome");
+              }
+            });
           }
         }
       });

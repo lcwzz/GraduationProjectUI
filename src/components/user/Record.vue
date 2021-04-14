@@ -22,7 +22,7 @@ export default {
   name: "Record",
   data() {
     return {
-      time: "",
+      time: moment().format("YYYY-MM-DD HH:mm:ss"),
     }
   },
   created() {

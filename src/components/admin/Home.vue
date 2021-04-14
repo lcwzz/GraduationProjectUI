@@ -3,17 +3,16 @@
     <el-header>
       <el-row>
         <el-col :span="6">
-          <span style="font-size: larger">医院职工管理系统</span>
+          <span style="font-size: larger" @click="toWelcome">医院职工管理系统</span>
         </el-col>
         <el-col :span="2" :offset="16">
-          <el-dropdown>
+          <el-dropdown trigger="click" @command="logout">
             <i class="el-icon-user-solid" style="margin-right: 15px"></i>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item>退出登录</el-dropdown-item>
+              <el-dropdown-item command="/">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>王小虎</span>
+          <span v-text="name">王小虎</span>
         </el-col>
       </el-row>
     </el-header>
@@ -65,6 +64,28 @@
 <script>
 export default {
   name: "Home",
+  data() {
+    return {
+      name: "",
+    };
+  },
+  created() {
+    this.setName();
+  },
+  methods: {
+    setName() {
+      let admin = JSON.parse(sessionStorage.getItem("admin"));
+      console.log(admin)
+      this.name = admin.name;
+    },
+    logout(command) {
+      sessionStorage.clear();
+      this.$router.push(command);
+    },
+    toWelcome() {
+      this.$router.push("/admin/welcome");
+    }
+  }
 }
 </script>
 

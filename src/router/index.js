@@ -9,6 +9,7 @@ import Records from "../components/user/Records";
 import Projects from "../components/user/Projects";
 import Download from "../components/user/Download";
 
+import Welcome from "../components/admin/Welcome";
 import AdminHome from "../components/admin/Home";
 import AdminInfo from "../components/admin/AdminInfo";
 import Doctor from  "../components/admin/Doctor";
@@ -36,6 +37,7 @@ export default new Router({
       ]},
     {path: '/admin', component: AdminHome,
       children: [
+        {path: 'welcome', component: Welcome},
         {path: 'adminInfo', component: AdminInfo},
         {path: 'doctor', component: Doctor},
         {path: 'addDoctor', component: AddDoctor},
