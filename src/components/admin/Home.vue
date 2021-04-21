@@ -36,14 +36,10 @@
             <el-menu-item index="/admin/record">查看考勤</el-menu-item>
             <el-menu-item index="/admin/addExtra">奖惩信息</el-menu-item>
           </el-submenu>
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-document"></i>
-              <span>项目管理</span>
-            </template>
-            <el-menu-item index="/admin/project">正在申请的项目</el-menu-item>
-            <el-menu-item index="/admin/projects">通过审批的项目</el-menu-item>
-          </el-submenu>
+          <el-menu-item index="/admin/projects">
+            <i class="el-icon-document"></i>
+            <span slot="title">项目管理</span>
+          </el-menu-item>
           <el-menu-item index="/admin/department">
             <i class="el-icon-s-home"></i>
             <span slot="title">科室管理</span>
