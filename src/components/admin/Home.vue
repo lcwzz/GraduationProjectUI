@@ -34,7 +34,7 @@
             <el-menu-item index="/admin/doctor">查看医生</el-menu-item>
             <el-menu-item index="/admin/addDoctor">添加医生</el-menu-item>
             <el-menu-item index="/admin/record">查看考勤</el-menu-item>
-            <el-menu-item index="/admin/addExtra">添加奖惩</el-menu-item>
+            <el-menu-item index="/admin/addExtra">奖惩信息</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
