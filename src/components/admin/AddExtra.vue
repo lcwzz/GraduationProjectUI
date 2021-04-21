@@ -2,20 +2,23 @@
 <div>
   <el-row>
     <el-col :span="16" :push="1">
-      <el-input v-model="name" placeholder="请输入查询条件"></el-input>
+      <el-input v-model="name" placeholder="请输入查询名字"></el-input>
     </el-col>
     <el-col :span="8" :push="2">
-      <el-button icon="el-icon-search" circle></el-button>
+      <el-button icon="el-icon-search" circle @click="search"></el-button>
     </el-col>
   </el-row>
   <el-table
     :data="tableData"
     border
     stripe
-    style="width: 80%; font-size: 20px; margin-left: 50px; margin-top: 20px">
+    style="width: 80%; font-size: 20px; margin-left: 70px; margin-top: 20px">
     <el-table-column type="index" label="序号" width="100px"></el-table-column>
     <el-table-column prop="name" label="姓名"></el-table-column>
-    <el-table-column prop="sign" label="奖惩"></el-table-column>
+    <el-table-column prop="sign" label="奖惩"
+                     :filters="[{text: '奖金', value: '奖金'},
+                                {text: '罚款', value: '罚款'}]"
+                     :filter-method="signFilterHandler"></el-table-column>
     <el-table-column prop="money" label="金额"></el-table-column>
     <el-table-column prop="reason" label="原因"></el-table-column>
     <el-table-column label="操作" width="300px">
@@ -31,11 +34,14 @@
     <el-col :span="8" :push="1">
       <el-button type="warning" size="small" @click="addExtra">添加奖惩</el-button>
     </el-col>
-    <el-col :span="16" :push="2">
+    <el-col :span="16" :push="3">
       <el-pagination
         background
-        layout="prev, pager, next"
-        :total="1000">
+        :total="total"
+        :current-page.sync="currentPage"
+        :page-size="pageSize"
+        layout="total, prev, pager, next, jumper"
+        @current-change="page">
       </el-pagination>
     </el-col>
   </el-row>
@@ -84,10 +90,13 @@ export default {
       extra: {},
       name: "",
       doctors: [],
+      currentPage: 1,
+      pageSize: 6,
+      total: 0,
     }
   },
   created() {
-    this.getExtra();
+    this.getExtra(1, this.pageSize, "");
   },
   methods: {
     getDoctors() {
@@ -100,15 +109,17 @@ export default {
         }
       });
     },
-    getExtra() {
+    getExtra(pageNum, pageSize, name) {
       const admin = JSON.parse(sessionStorage.getItem("admin"));
-      this.$http.get("http://localhost/admin/findExtra?id=" + admin.id).then(response => {
+      this.$http.get("http://localhost/admin/findExtraPage?id=" + admin.id +
+          "&pageNum=" + pageNum + "&pageSize=" + pageSize + "&name=" + name).then(response => {
         console.log(response.data);
         let res = response.data;
         if (!res.success) {
           this.$message.error(res.message);
         } else {
-          this.tableData = res.data;
+          this.tableData = res.data.extra;
+          this.total = res.data.total;
         }
       });
     },
@@ -133,7 +144,12 @@ export default {
           this.$message.error(res.message);
         }else {
           this.$message.success("删除成功！");
-          this.getExtra();
+          if (((this.currentPage - 1) * this.pageSize == (this.total - 1))
+              && (this.currentPage > 1)) {
+            this.getExtra(this.currentPage - 1, this.pageSize, this.name);
+          } else {
+            this.getExtra(this.currentPage, this.pageSize, this.name);
+          }
         }
       });
     },
@@ -150,7 +166,7 @@ export default {
             this.$message.success("添加成功！");
           }
           this.cancel();
-          this.getExtra();
+          this.getExtra(this.currentPage, this.pageSize, this.name);
         }
       });
     },
@@ -158,6 +174,18 @@ export default {
       this.dialogFormVisible = false;
       this.extra = {};
     },
+    page(pageNum) {
+      this.getExtra(pageNum, this.pageSize, this.name);
+    },
+    signFilterHandler(value, row, column) {
+      // property为筛选列名
+      const property = column['property'];
+      // value为删选条件
+      return row[property] === value;
+    },
+    search() {
+      this.getExtra(1, this.pageSize, this.name);
+    }
   }
 }
 </script>
