@@ -1,15 +1,15 @@
 <template>
   <div>
     <el-form ref="form" :model="doctor" label-width="80px" label-position="right"
-             :disabled="formCtl">
+             style="margin-left: 60px" :disabled="formCtl">
       <el-form-item label="账号">
-        <el-input v-model="doctor.account" disabled></el-input>
+        <el-input v-model="doctor.account" disabled style="width: 400px"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="doctor.password"></el-input>
+        <el-input v-model="doctor.password" show-password style="width: 400px"></el-input>
       </el-form-item>
       <el-form-item label="姓名">
-        <el-input v-model="doctor.name"></el-input>
+        <el-input v-model="doctor.name" style="width: 400px"></el-input>
       </el-form-item>
       <el-form-item label="性别">
         <el-radio-group v-model="doctor.sex">
@@ -18,7 +18,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="年龄">
-        <el-input v-model="doctor.age"></el-input>
+        <el-input v-model="doctor.age" style="width: 400px"></el-input>
       </el-form-item>
       <el-form-item label="政治面貌">
         <el-select v-model="doctor.face">
@@ -36,10 +36,10 @@
         </el-select>
       </el-form-item>
       <el-form-item label="薪酬">
-        <el-input v-model="doctor.salary" disabled></el-input>
+        <el-input v-model="doctor.salary" disabled style="width: 400px"></el-input>
       </el-form-item>
       <el-form-item label="科室">
-        <el-input v-model="doctor.departmentName" disabled></el-input>
+        <el-input v-model="doctor.departmentName" disabled style="width: 220px"></el-input>
       </el-form-item>
     </el-form>
     <el-row>

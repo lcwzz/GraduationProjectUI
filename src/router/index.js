@@ -21,7 +21,7 @@ import Upload from "../components/admin/Upload";
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {path: '/', redirect: "/login"},
     {path: '/login', component: Login},
@@ -47,3 +47,22 @@ export default new Router({
       ]},
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // to: 要访问的路径
+  // from: 从哪个路径来
+  // next: 函数，next() -> 放行，next(path) -> 强制跳转到path
+  if (to.path === "/login") {
+    return next();
+  }
+  const user = sessionStorage.getItem("user");
+  const admin = sessionStorage.getItem("admin");
+  if (!user && !admin) {
+    alert("请先登录后再访问！");
+    return next("/login");
+  } else {
+    return next();
+  }
+})
+
+export default router

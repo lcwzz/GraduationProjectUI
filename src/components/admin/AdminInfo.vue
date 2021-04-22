@@ -6,7 +6,7 @@
         <el-input v-model="admin.account" disabled style="width: 400px;"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="admin.password" style="width: 400px;"></el-input>
+        <el-input v-model="admin.password" show-password style="width: 400px;"></el-input>
       </el-form-item>
       <el-form-item label="姓名">
         <el-input v-model="admin.name" style="width: 400px;"></el-input>

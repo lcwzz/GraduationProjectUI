@@ -18,7 +18,12 @@
     <el-table-column prop="sign" label="奖惩"
                      :filters="[{text: '奖金', value: '奖金'},
                                 {text: '罚款', value: '罚款'}]"
-                     :filter-method="signFilterHandler"></el-table-column>
+                     :filter-method="signFilterHandler">
+      <template slot-scope="scope">
+        <el-tag type="success" v-if="scope.row.sign == '奖金'" style="font-size: 20px">奖金</el-tag>
+        <el-tag type="danger" v-if="scope.row.sign == '罚款'" style="font-size: 20px">罚款</el-tag>
+      </template>
+    </el-table-column>
     <el-table-column prop="money" label="金额"></el-table-column>
     <el-table-column prop="reason" label="原因"></el-table-column>
     <el-table-column label="操作" width="300px">
