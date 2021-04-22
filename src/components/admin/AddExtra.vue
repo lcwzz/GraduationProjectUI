@@ -184,6 +184,7 @@ export default {
       return row[property] === value;
     },
     search() {
+      this.currentPage = 1;
       this.getExtra(1, this.pageSize, this.name);
     }
   }

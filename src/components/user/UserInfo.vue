@@ -78,7 +78,7 @@ export default {
           _this.$message.error(res.message);
         } else {
           sessionStorage.setItem("user", JSON.stringify(_this.doctor));
-          this.$message.success("更新成功！");
+          _this.$message.success("更新成功！");
           location.reload();
         }
       });

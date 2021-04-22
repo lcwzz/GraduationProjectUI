@@ -1,16 +1,24 @@
 <template>
   <div>
+  <el-row>
+    <el-col :span="16" :push="1">
+      <el-input v-model="name" placeholder="请输入医生姓名搜索"></el-input>
+    </el-col>
+    <el-col :span="8" :push="2">
+      <el-button type="primary" @click="search" icon="el-icon-search">搜索</el-button>
+    </el-col>
+  </el-row>
   <el-table
     :data="doctors"
-    style="width: 80%; font-size: 20px; margin-left: 50px">
+    style="width: 80%; font-size: 20px; margin-left: 70px; margin-top: 20px">
     <el-table-column type="index" label="序号" width="100"></el-table-column>
     <el-table-column prop="name" label="姓名" width="100"></el-table-column>
     <el-table-column prop="sex" label="性别" width="100"></el-table-column>
     <el-table-column prop="age" label="年龄" width="100"></el-table-column>
     <el-table-column prop="departmentName" label="科室" width="100"></el-table-column>
     <el-table-column prop="face" label="政治面貌" width="150"></el-table-column>
-    <el-table-column prop="education" label="学历" width="100"></el-table-column>
-    <el-table-column prop="salary" label="薪资" width="100"></el-table-column>
+    <el-table-column prop="education" label="学历" width="150"></el-table-column>
+    <el-table-column prop="salary" label="薪资" width="150"></el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button @click="updateDoctor(scope.row)" type="primary" icon="el-icon-edit">编辑</el-button>
@@ -18,6 +26,15 @@
       </template>
     </el-table-column>
   </el-table>
+  <el-pagination
+    style="margin-top: 20px; margin-left: 900px"
+    background
+    :total="total"
+    :current-page.sync="currentPage"
+    :page-size="pageSize"
+    layout="total, prev, pager, next, jumper"
+    @current-change="page">
+  </el-pagination>
 
   <el-dialog title="修改医生信息" :visible.sync="dialogFormVisible">
     <el-form ref="form" :model="doctor" label-width="80px" label-position="right">
@@ -78,10 +95,14 @@ export default {
       doctor: {},
       dialogFormVisible: false,
       departments:[],
+      name: "",
+      currentPage: 1,
+      pageSize: 6,
+      total: 0,
     }
   },
   created() {
-    this.getDoctors();
+    this.getDoctors(1, this.pageSize, "");
   },
   methods: {
     getDepartments() {
@@ -94,13 +115,16 @@ export default {
         }
       });
     },
-    getDoctors() {
-      this.$http.get("http://localhost/admin/getAllDoctors").then(response => {
+    getDoctors(pageNum, pageSize, name) {
+      this.$http.get("http://localhost/admin/getDoctorPage?pageNum=" +
+        pageNum + "&pageSize=" + pageSize + "&name=" + name).then(response => {
+        console.log(response.data);
         const res = response.data;
         if (!res.success) {
           this.$message.error(res.message);
         }else {
-          this.doctors = res.data;
+          this.doctors = res.data.doctors;
+          this.total = res.data.total;
         }
       });
     },
@@ -116,7 +140,8 @@ export default {
           this.$message.error(res.message);
         }else {
           this.dialogFormVisible = false;
-          this.getDoctors();
+          this.$message.success("修改成功！");
+          this.getDoctors(this.currentPage, this.pageSize, this.name);
         }
       });
     },
@@ -135,11 +160,23 @@ export default {
               this.$message.error(res.message);
             }else {
               this.$message.success("删除成功！");
-              this.getDoctors();
+              if (((this.currentPage - 1) * this.pageSize == (this.total - 1))
+                && (this.currentPage > 1)) {
+                this.getDoctors(this.currentPage - 1, this.pageSize, this.name);
+              } else {
+                this.getDoctors(this.currentPage, this.pageSize, this.name);
+              }
             }
           });
         });
-    }
+    },
+    page(pageNum) {
+      this.getDoctors(pageNum, this.pageSize, this.name);
+    },
+    search() {
+      this.currentPage = 1;
+      this.getDoctors(1, this.pageSize, this.name);
+    },
   }
 }
 </script>

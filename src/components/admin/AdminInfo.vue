@@ -1,15 +1,15 @@
 <template>
   <div>
     <el-form ref="form" :model="admin" label-width="80px" label-position="right"
-             :disabled="formCtl">
+             style="margin-left: 60px" :disabled="formCtl">
       <el-form-item label="账号">
-        <el-input v-model="admin.account" disabled></el-input>
+        <el-input v-model="admin.account" disabled style="width: 400px;"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="admin.password"></el-input>
+        <el-input v-model="admin.password" style="width: 400px;"></el-input>
       </el-form-item>
       <el-form-item label="姓名">
-        <el-input v-model="admin.name"></el-input>
+        <el-input v-model="admin.name" style="width: 400px;"></el-input>
       </el-form-item>
       <el-form-item label="性别">
         <el-radio-group v-model="admin.sex">
@@ -18,7 +18,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="年龄">
-        <el-input v-model="admin.age"></el-input>
+        <el-input v-model="admin.age" style="width: 400px;"></el-input>
       </el-form-item>
       <el-form-item label="政治面貌">
         <el-select v-model="admin.face">

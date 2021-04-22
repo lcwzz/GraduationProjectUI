@@ -40,10 +40,6 @@
             <i class="el-icon-document"></i>
             <span slot="title">项目管理</span>
           </el-menu-item>
-<!--          <el-menu-item index="/admin/department">-->
-<!--            <i class="el-icon-s-home"></i>-->
-<!--            <span slot="title">科室管理</span>-->
-<!--          </el-menu-item>-->
           <el-menu-item index="/admin/upload">
             <i class="el-icon-upload"></i>
             <span slot="title">资料上传</span>

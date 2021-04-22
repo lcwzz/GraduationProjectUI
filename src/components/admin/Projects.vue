@@ -2,6 +2,7 @@
   <div>
     <el-table
         :data="projects"
+        max-height="720"
         border
         style="width: 80%; font-size: 20px; margin-left: 50px; margin-top: 10px">
       <el-table-column type="index" label="序号" width="80px"></el-table-column>
