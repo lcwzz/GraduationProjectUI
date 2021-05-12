@@ -8,6 +8,7 @@ import Record from "../components/user/Record";
 import Records from "../components/user/Records";
 import Projects from "../components/user/Projects";
 import Download from "../components/user/Download";
+import Medical from "../components/user/Medical";
 
 import Welcome from "../components/admin/Welcome";
 import AdminHome from "../components/admin/Home";
@@ -33,6 +34,7 @@ const router =  new Router({
         {path: 'records', component: Records},
         {path: 'projects', component: Projects},
         {path: 'download', component: Download},
+        {path: 'medical', component: Medical},
       ]},
     {path: '/admin', component: AdminHome,
       children: [

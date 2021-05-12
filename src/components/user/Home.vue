@@ -38,6 +38,10 @@
             <el-menu-item index="/user/record">今日考勤</el-menu-item>
             <el-menu-item index="/user/records">考勤查看</el-menu-item>
           </el-submenu>
+          <el-menu-item index="/user/medical">
+            <i class="el-icon-document"></i>
+            <span slot="title">病历管理</span>
+          </el-menu-item>
           <el-menu-item index="/user/projects">
             <i class="el-icon-document"></i>
             <span slot="title">项目信息</span>
