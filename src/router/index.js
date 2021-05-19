@@ -19,6 +19,7 @@ import AdminRecord from "../components/admin/Record";
 import AddExtra from "../components/admin/AddExtra";
 import AdminProjects from "../components/admin/Projects";
 import Upload from "../components/admin/Upload";
+import Evaluate from "../components/admin/Evaluate";
 
 Vue.use(Router)
 
@@ -46,6 +47,7 @@ const router =  new Router({
         {path: 'addExtra', component: AddExtra},
         {path: 'projects', component: AdminProjects},
         {path: 'upload', component: Upload},
+        {path: 'evaluate', component: Evaluate},
       ]},
   ]
 })
